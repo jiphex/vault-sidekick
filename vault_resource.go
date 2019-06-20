@@ -194,3 +194,7 @@ func (r VaultResource) String() string {
 	}
 	return str
 }
+
+func (r VaultResource) ID() string {
+	return r.Path
+}
