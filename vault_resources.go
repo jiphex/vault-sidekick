@@ -145,6 +145,8 @@ func (r *VaultResources) Set(value string) error {
 					return fmt.Errorf("the jitter option: %s is invalid, should be in duration format", value)
 				}
 				rn.MaxJitter = maxJitter
+			case optionTtl:
+				rn.TTL = value
 			default:
 				rn.Options[name] = value
 			}
