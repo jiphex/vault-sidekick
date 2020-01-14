@@ -19,10 +19,13 @@ require (
 	github.com/mitchellh/mapstructure v1.1.2
 	github.com/pierrec/lz4 v2.4.0+incompatible // indirect
 	github.com/pmezard/go-difflib v1.0.0
+	github.com/prometheus/client_golang v1.3.0
+	github.com/prometheus/common v0.8.0 // indirect
 	github.com/sethgrid/pester v0.0.0-20190127155807-68a33a018ad0 // indirect
 	github.com/stretchr/testify v1.3.0
 	golang.org/x/crypto v0.0.0-20200109152110-61a87790db17 // indirect
 	golang.org/x/net v0.0.0-20191209160850-c0dbc17a3553 // indirect
+	golang.org/x/sys v0.0.0-20200113162924-86b910548bc1 // indirect
 	golang.org/x/time v0.0.0-20191024005414-555d28b269f0 // indirect
 	gopkg.in/square/go-jose.v2 v2.4.1 // indirect
 	gopkg.in/yaml.v2 v2.2.7
