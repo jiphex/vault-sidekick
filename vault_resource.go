@@ -52,7 +52,7 @@ const (
 	// to updates for this resource. If non-zero, a random value between 0 and
 	// maxJitter will be subtracted from the update period.
 	optionMaxJitter = "jitter"
-        // optionTtl specifies requested Time To Live for use with the PKI Backend
+	// optionTtl specifies requested Time To Live for use with the PKI Backend
 	optionTtl = "ttl"
 	// defaultSize sets the default size of a generic secret
 	defaultSize = 20
@@ -69,6 +69,7 @@ var (
 		"gcp":       true,
 		"secret":    true,
 		"mysql":     true,
+		"rabbitmq":  true,
 		"tpl":       true,
 		"postgres":  true,
 		"transit":   true,
