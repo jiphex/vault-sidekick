@@ -1,12 +1,15 @@
-FROM alpine:3.5
+FROM golang:1.14-alpine as GOBUILD
+ARG GOPROXY=https://proxy.golang.org
+COPY . /work
+WORKDIR /work
+RUN apk --no-cache add git make && make
+
+FROM alpine:latest
 MAINTAINER Rohith <gambol99@gmail.com>
-
-RUN apk update && \
-    apk add ca-certificates bash
-
-RUN adduser -D vault
-
-ADD bin/vault-sidekick /vault-sidekick
-RUN chmod 755 /vault-sidekick
+COPY --from=GOBUILD /work/bin/vault-sidekick /vault-sidekick
+RUN apk --no-cache add ca-certificates && \
+  adduser -D vault && \
+  chmod 755 /vault-sidekick
+USER vault
 
 ENTRYPOINT [ "/vault-sidekick", "-logtostderr", "-v", "10"]
