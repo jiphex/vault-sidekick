@@ -19,6 +19,7 @@ package main
 import (
 	"os"
 
+	"github.com/golang/glog"
 	"github.com/hashicorp/vault/api"
 )
 
@@ -71,5 +72,8 @@ func (r authAppRolePlugin) Create(cfg *vaultAuthOptions) (string, error) {
 		return "", err
 	}
 
+	if acc, err := secret.TokenAccessor(); err == nil {
+		glog.V(10).Infof("retrieved token via approle, accessor is %s", acc)
+	}
 	return secret.Auth.ClientToken, nil
 }
