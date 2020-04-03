@@ -30,7 +30,7 @@ import (
 	"os/exec"
 	"path/filepath"
 
-	"github.com/UKHomeOffice/vault-sidekick/metrics"
+	"github.com/jiphex/vault-sidekick/metrics"
 	"github.com/golang/glog"
 	"gopkg.in/yaml.v2"
 )

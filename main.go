@@ -27,7 +27,7 @@ import (
 
 	"github.com/golang/glog"
 
-	"github.com/UKHomeOffice/vault-sidekick/metrics"
+	"github.com/jiphex/vault-sidekick/metrics"
 )
 
 var (
