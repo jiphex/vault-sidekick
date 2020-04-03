@@ -13,15 +13,15 @@ VETARGS?=-asmdecl -atomic -bool -buildtags -copylocks -methods -nilfunc -printf 
 
 default: build
 
-build: deps
+build: 
 	@echo "--> Compiling the project"
 	mkdir -p bin
-	godep go build -ldflags '-w ${LFLAGS}' -o bin/${NAME}
+	go build -ldflags '-w ${LFLAGS}' -o bin/${NAME}
 
-static: deps
+static: 
 	@echo "--> Compiling the static binary"
 	mkdir -p bin
-	CGO_ENABLED=0 GOOS=linux godep go build -a -tags netgo -ldflags '-w ${LFLAGS}' -o bin/${NAME}
+	CGO_ENABLED=0 GOOS=linux go build -a -tags netgo -ldflags '-w ${LFLAGS}' -o bin/${NAME}
 
 docker-build:
 	@echo "--> Compiling the project"
@@ -58,39 +58,3 @@ clean:
 authors:
 	@echo "--> Updating the AUTHORS"
 	git log --format='%aN <%aE>' | sort -u > AUTHORS
-
-deps:
-	@echo "--> Installing build dependencies"
-	@go get github.com/tools/godep
-
-vet:
-	@echo "--> Running go tool vet $(VETARGS) ."
-	@go tool vet 2>/dev/null ; if [ $$? -eq 3 ]; then \
-		go get golang.org/x/tools/cmd/vet; \
-	fi
-	@go tool vet $(VETARGS) .
-
-format:
-	@echo "--> Running go fmt"
-	@go fmt $(PACKAGES)
-
-gofmt:
-	@echo "--> Running gofmt check"
-	@gofmt -s -l *.go \
-      | grep -q \.go ; if [ $$? -eq 0 ]; then \
-            echo "You need to runn the make format, we have file unformatted"; \
-            gofmt -s -l *.go; \
-            exit 1; \
-      fi
-cover:
-	@echo "--> Running go cover"
-	@godep go test --cover
-
-test: deps
-	@echo "--> Running the tests"
-	go test -v
-	@$(MAKE) gofmt
-	@$(MAKE) vet
-
-changelog: release
-	git log $(shell git tag | tail -n1)..HEAD --no-merges --format=%B > changelog
